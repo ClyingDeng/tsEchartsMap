@@ -11,16 +11,16 @@ export default class SingleColumns extends Vue {
   timmerOne: any = null;
 //   public $echarts: any;
   private namedata: any[] = [
-    "姑苏区",
-    "虎丘区",
-    "吴中区",
-    "相城区",
-    "吴江区",
-    "工业园区",
-    "常熟区",
-    "昆山市",
-    "张家港市",
-    "太仓市"
+    "宝山区",
+    "静安区",
+    "杨浦区",
+    "松江区",
+    "闵行区",
+    "金山区",
+    "徐汇区",
+    "长宁区",
+    "青浦区",
+    "黄浦区"
   ];
   private option: object = {
     tooltip: {
@@ -151,7 +151,7 @@ export default class SingleColumns extends Vue {
     }, 5000);
   }
   mounted() {
-    console.log("11");
+   
     this.getsingleColumnChart();
   }
 }

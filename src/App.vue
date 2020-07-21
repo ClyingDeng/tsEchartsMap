@@ -34,6 +34,7 @@ export default class App extends Vue {}
   .main {
     width: 100vw;
     height: calc(100vh - 70px);
+    overflow: scroll;
   }
 }
 </style>

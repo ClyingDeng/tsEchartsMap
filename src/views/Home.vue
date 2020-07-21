@@ -1,9 +1,11 @@
 <template>
   <div class="home">
     <div class="chart">
+      <PieChart class="show_chart"></PieChart>
+    </div>
+    <div class="chart">
       <singleColumns class="show_chart"></singleColumns>
     </div>
-    <div class="chart"></div>
     <div class="chart"></div>
     <!-- <PieChart /> -->
   </div>
@@ -11,17 +13,16 @@
 
 <script>
 // @ is an alias to /src
-import{Component,Vue} from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import singleColumns from "@/components/SingleColumns.vue";
 import PieChart from "@/components/Pie.vue";
 
 @Component({
-  components:{
-      PieChart,
+  components: {
+    PieChart,
     singleColumns
   }
 })
-
 export default class App extends Vue {}
 </script>
 <style lang="scss">
