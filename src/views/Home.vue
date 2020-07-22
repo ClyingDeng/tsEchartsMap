@@ -6,7 +6,9 @@
     <div class="chart">
       <singleColumns class="show_chart"></singleColumns>
     </div>
-    <div class="chart"></div>
+    <div class="chart">
+      <LineChart class="show_chart"></LineChart>
+    </div>
     <!-- <PieChart /> -->
   </div>
 </template>
@@ -16,11 +18,13 @@
 import { Component, Vue } from "vue-property-decorator";
 import singleColumns from "@/components/SingleColumns.vue";
 import PieChart from "@/components/Pie.vue";
+import LineChart from "@/components/Line.vue";
 
 @Component({
   components: {
     PieChart,
-    singleColumns
+    singleColumns,
+    LineChart
   }
 })
 export default class App extends Vue {}
