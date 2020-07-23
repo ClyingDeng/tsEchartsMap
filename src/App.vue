@@ -15,8 +15,8 @@ import HeadNav from "@/components/HeadNav.vue";
 
 @Component({
   components: {
-    HeadNav
-  }
+    HeadNav,
+  },
 })
 export default class App extends Vue {}
 </script>
@@ -29,12 +29,13 @@ export default class App extends Vue {}
   .nav {
     height: 70px;
     width: 100%;
-    // background-color: red;
   }
   .main {
     width: 100vw;
     height: calc(100vh - 70px);
     overflow: scroll;
+    overflow: hidden;
+    // background-color: red;
   }
 }
 </style>
