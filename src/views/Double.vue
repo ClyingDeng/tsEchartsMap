@@ -1,16 +1,22 @@
 <template>
   <div class="double">
-    <div class="chart"></div>
+    <div class="chart">
+      <DoublePie></DoublePie>
+    </div>
     <div class="chart"></div>
     <div class="chart"></div>
   </div>
 </template>
-<script>
+<script lang="ts">
 // @ is an alias to /src
-
-export default {
-  name: "double"
-};
+import { Component, Vue } from "vue-property-decorator";
+import DoublePie from "@/components/DoublePie.vue";
+@Component({
+  components: {
+    DoublePie,
+  },
+})
+export default class Double extends Vue {}
 </script>
 <style lang="scss" scoped>
 .double {
