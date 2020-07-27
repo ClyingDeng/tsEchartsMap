@@ -7,7 +7,7 @@
             <router-link to="/" exact>单图</router-link>
           </li>
           <li>
-            <router-link to="/double" exact>双环</router-link>
+            <router-link to="/double" exact>多图</router-link>
           </li>
           <li>
             <router-link to="/map" exact>地图引用</router-link>

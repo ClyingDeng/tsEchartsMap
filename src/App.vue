@@ -22,6 +22,22 @@ export default class App extends Vue {}
 </script>
 
 <style lang="scss">
+//滚动条轨道
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 0;
+  height: 20px;
+}
+//滚动条内的小方块
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#b6e6ff, #409eff);
+  border-radius: 5px;
+  height: 10px;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 10px;
+}
 #app {
   width: 100vw;
   height: 100vh;
@@ -34,7 +50,7 @@ export default class App extends Vue {}
     width: 100vw;
     height: calc(100vh - 70px);
     overflow: scroll;
-    overflow: hidden;
+    // overflow: hidden;
     // background-color: red;
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div ref="PieRingChart"></div>
+  <div ref="PieRingChart" class="dPie"></div>
 </template>
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
@@ -169,5 +169,8 @@ export default class PieRingChart extends Vue {
   }
 }
 </script>
-<style>
+<style lang="scss" scoped>
+.dPie {
+  height: 100%;
+}
 </style>
