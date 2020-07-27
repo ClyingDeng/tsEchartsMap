@@ -109,7 +109,7 @@ export default class complexChart extends Vue {
       series: [
         {
           type: "pictorialBar",
-          name: "总警数",
+          name: "总数1",
           data: [],
           symbol: "image://" + this.img,
           symbolSize: ["70%", "105%"],
@@ -122,7 +122,7 @@ export default class complexChart extends Vue {
           },
         },
         {
-          name: "总处警数",
+          name: "总数2",
           type: "line",
           smooth: true,
           showSymbol: false,
