@@ -4,14 +4,13 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import echarts from "echarts";
 @Component
 export default class brokeLineChart extends Vue {
   private commonColor: String = "";
   private areaOffset: String = "";
   private timmerOneAnim: any = null;
   getBrokenLineChart() {
-    var commonChart = echarts.init(
+    var commonChart = this.$echarts.init(
       this.$refs.brokeLineChart as HTMLCanvasElement
     );
 
@@ -20,16 +19,16 @@ export default class brokeLineChart extends Vue {
     let paddingColor: any[] = [
       {
         offset: 0,
-        color: this.commonColor
+        color: this.commonColor,
       },
       {
         offset: 0.5,
-        color: this.areaOffset
+        color: this.areaOffset,
       },
       {
         offset: 1,
-        color: "#ffe"
-      }
+        color: "#ffe",
+      },
     ];
     let namedata: any[] = [
       "1月",
@@ -43,7 +42,7 @@ export default class brokeLineChart extends Vue {
       "9月",
       "10月",
       "11月",
-      "12月"
+      "12月",
     ];
     let valdata: any[] = [
       "5",
@@ -57,7 +56,7 @@ export default class brokeLineChart extends Vue {
       "40",
       "45",
       "60",
-      "65"
+      "65",
     ];
     let option: any = {
       tooltip: {
@@ -73,22 +72,22 @@ export default class brokeLineChart extends Vue {
           lineStyle: {
             color: this.commonColor,
             width: 2,
-            opacity: 1
-          }
+            opacity: 1,
+          },
         },
         textStyle: {
           color: "#fff",
-          fontSize: 14
+          fontSize: 14,
         },
-        formatter: "{b} <br/>{a}: {c}"
+        formatter: "{b} <br/>{a}: {c}",
       },
       legend: {
-        show: false
+        show: false,
       },
       grid: {
         top: "5%",
         bottom: "20%",
-        right: "5%"
+        right: "5%",
         // left:'5%'
       },
       xAxis: [
@@ -96,20 +95,20 @@ export default class brokeLineChart extends Vue {
           show: true,
           offset: 20,
           axisLine: {
-            show: false
+            show: false,
           },
           axisTick: {
-            show: false
+            show: false,
           },
           axisLabel: {
             interval: 0,
             textStyle: {
               color: "#6C7293",
-              fontSize: 12
-            }
+              fontSize: 12,
+            },
           },
-          data: namedata
-        }
+          data: namedata,
+        },
       ],
       yAxis: [
         {
@@ -120,23 +119,23 @@ export default class brokeLineChart extends Vue {
             show: true,
             textStyle: {
               color: "#6C7293",
-              fontSize: 10
-            }
+              fontSize: 10,
+            },
           },
           axisLine: {
-            show: false
+            show: false,
           },
           axisTick: {
-            show: false
+            show: false,
           },
           splitLine: {
             show: true,
             lineStyle: {
               color: "#EAEBF0",
-              width: 1
-            }
-          }
-        }
+              width: 1,
+            },
+          },
+        },
       ],
       series: [
         {
@@ -150,33 +149,33 @@ export default class brokeLineChart extends Vue {
             normal: {
               color: this.commonColor, //折线的颜色
               width: 4, //折线粗细
-              opacity: 1
-            }
+              opacity: 1,
+            },
           },
           label: {
-            show: false
+            show: false,
           },
           itemStyle: {
             normal: {
               color: this.commonColor, //拐点颜色
               borderColor: "#fff", //拐点边框颜色
-              borderWidth: 2 //拐点边框大小
-            }
+              borderWidth: 2, //拐点边框大小
+            },
           },
           areaStyle: {
             normal: {
-              color: new echarts.graphic.LinearGradient(
+              color: new this.$echarts.graphic.LinearGradient(
                 0,
                 0,
                 0,
                 1,
                 paddingColor
-              )
-            }
+              ),
+            },
           },
-          data: valdata
-        }
-      ]
+          data: valdata,
+        },
+      ],
     };
     commonChart.setOption(option);
     var count = 0;
@@ -187,15 +186,13 @@ export default class brokeLineChart extends Vue {
       commonChart.dispatchAction({
         type: "showTip",
         seriesIndex: 0,
-        dataIndex: count % namedata.length
+        dataIndex: count % namedata.length,
       });
       count++;
     }, 5000);
   }
-  async mounted() {
-    await this.$nextTick(() => {
-      this.getBrokenLineChart();
-    });
+  mounted() {
+    this.getBrokenLineChart();
   }
 }
 </script>

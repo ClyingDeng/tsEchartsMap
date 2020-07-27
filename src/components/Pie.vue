@@ -4,7 +4,6 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import echarts from "echarts";
 @Component
 export default class HelloWorld extends Vue {
   // @Prop() private msg!: string;
@@ -13,31 +12,33 @@ export default class HelloWorld extends Vue {
     "#81b31c",
     "#aad7cb",
     "#1d3467",
-    "#983928"
+    "#983928",
   ];
   private poiData: any[] = [
     { name: "全文搜索引擎", value: "20000" },
     { name: "元搜索引擎", value: "20000" },
     { name: "垂直搜索引擎", value: "20000" },
     { name: "录搜索引擎", value: "20000" },
-    { name: "其他", value: "20000" }
+    { name: "其他", value: "20000" },
   ];
   private poiNames: any[] = [
     "全文搜索引擎",
     "元搜索引擎",
     "垂直搜索引擎",
     "录搜索引擎",
-    "其他"
+    "其他",
   ];
-  timmerPie: any = null;
+  private timmerPie: any = null;
   getBrokenPieChart() {
-    let commonPieChart = echarts.init(this.$refs.pieChart as HTMLCanvasElement);
+    let commonPieChart = this.$echarts.init(
+      this.$refs.pieChart as HTMLCanvasElement
+    );
 
     let pieChartOption: any = {
       color: [], //环形颜色
       tooltip: {
         trigger: "item",
-        formatter: "{b}: {c} ({d}%)"
+        formatter: "{b}: {c} ({d}%)",
       },
       title: {
         zlevel: 0,
@@ -48,12 +49,12 @@ export default class HelloWorld extends Vue {
             color: "#02d6d6",
             fontSize: 20,
             fontWeight: "bold",
-            lineHeight: 20
+            lineHeight: 20,
           },
           name: {
             color: "#02d6d6",
-            lineHeight: 20
-          }
+            lineHeight: 20,
+          },
         },
         top: "45%",
         left: "48%",
@@ -64,15 +65,15 @@ export default class HelloWorld extends Vue {
               color: "#4D4D4D",
               fontSize: 20,
               fontWeight: "bold",
-              lineHeight: 20
+              lineHeight: 20,
             },
             name: {
               color: "#4D4D4D",
               fontWeight: "bold",
-              lineHeight: 20
-            }
-          }
-        }
+              lineHeight: 20,
+            },
+          },
+        },
       },
       legend: {
         orient: "horizontal",
@@ -80,7 +81,7 @@ export default class HelloWorld extends Vue {
         y: "bottom",
         type: "scroll",
         // selectedMode: false,
-        data: []
+        data: [],
       },
       series: [
         {
@@ -95,8 +96,8 @@ export default class HelloWorld extends Vue {
           label: {
             normal: {
               show: false,
-              position: "center"
-            }
+              position: "center",
+            },
           },
           emphasis: {
             // label: {
@@ -104,16 +105,16 @@ export default class HelloWorld extends Vue {
             textStyle: {
               fontSize: "30",
               fontWeight: "bold",
-              formatter: "{c} \n {b}"
-            }
+              formatter: "{c} \n {b}",
+            },
             // }
           },
           labelLine: {
             // 标签的视觉引导线样式,在 label 位置 设置为'outside'的时候会显示视觉引导线。
-            show: false
-          }
-        }
-      ]
+            show: false,
+          },
+        },
+      ],
     };
     pieChartOption.color = this.poiColor;
     pieChartOption.series[0].data = this.poiData;
@@ -132,33 +133,29 @@ export default class HelloWorld extends Vue {
       commonPieChart.dispatchAction({
         type: "downplay",
         seriesIndex: 0,
-        dataIndex: currentIndex
+        dataIndex: currentIndex,
       });
       currentIndex = (currentIndex + 1) % dataLen;
       // 高亮当前图形
       commonPieChart.dispatchAction({
         type: "highlight",
         seriesIndex: 0,
-        dataIndex: currentIndex
+        dataIndex: currentIndex,
       });
       // 显示 tooltip
       commonPieChart.dispatchAction({
         type: "showTip",
         seriesIndex: 0,
-        dataIndex: currentIndex
+        dataIndex: currentIndex,
       });
     }, 3000);
   }
-  async mounted() {
-    console.log("11");
-    await this.$nextTick(() => {
-      this.getBrokenPieChart();
-    });
+  mounted() {
+    this.getBrokenPieChart();
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 </style>

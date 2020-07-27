@@ -37,7 +37,7 @@ export default class App extends Vue {}
   .chart {
     width: 500px;
     height: 500px;
-    background-color: #0ff;
+    background-color: #b6e6ff;
     margin-top: 20px;
     .show_chart {
       width: 100%;

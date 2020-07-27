@@ -1,236 +1,250 @@
-<!-- 多个柱状-柱状图 -->
+<!-- 多个折线 -->
 <template>
-  <div ></div>
+  <div ref="doubleLineChart" class="lines"></div>
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class className extends Vue {
-    private timmerOneAnim:any = null;
-      getbzdzAreaChart() {
-      var namedata = [
-        "姑苏区",
-        "虎丘区",
-        "吴中区",
-        "相城区",
-        "吴江区",
-        "工业园区",
-        "常熟区",
-        "昆山市",
-        "张家港市",
-        "太仓市"
-      ];
-      var areaChart = echarts.init(document.getElementById("bzdzArea") as HTMLCanvasElement);
-      var option:any = {
-        tooltip: {
-          //提示框组件
-          trigger: "axis",
-          formatter: "{b}<br/>{a0}: {c0}<br/>{a1}: {c1}<br/>{a2}: {c2}",
-          axisPointer: {
-            type: "shadow",
-            label: {
-              backgroundColor: "#6a7985"
-            }
-          },
-          textStyle: {
-            color: "#fff",
-            fontStyle: "normal",
-            fontFamily: "微软雅黑",
-            fontSize: 12
-          }
-        },
-        grid: {
-          top: "15%",
-          bottom: "10%",
-          right: "5%",
-          left: "5%",
-          containLabel: true
-        },
-        legend: {
-          //图例组件，颜色和名字
-          right: "35%",
-          top: "2%",
-          itemGap: 16,
-          itemWidth: 18,
-          itemHeight: 10,
-          data: [
-            {
-              name: "村"
-            },
-            {
-              name: "区"
-            },
-            {
-              name: "街路巷"
-            }
-          ],
-          textStyle: {
-            color: "#a8aab0",
-            fontStyle: "normal",
-            fontFamily: "微软雅黑",
-            fontSize: 12
-          }
-        },
-        xAxis: [
-          {
-            type: "category",
-            data: namedata,
-            axisLabel: {
-              //坐标轴刻度标签的相关设置。
-              interval: 0, //设置为 1,表示『隔一个标签显示一个标签』
-              textStyle: {
-                color: "#6C7293",
-                fontStyle: "normal",
-                fontFamily: "微软雅黑",
-                fontSize: 12
-              },
-              rotate: 0
-            },
-            axisTick: {
-              //坐标轴刻度相关设置。
-              show: false
-            },
-            axisLine: {
-              //坐标轴轴线相关设置
-              lineStyle: {
-                color: "#fff",
-                opacity: 0.2
-              }
-            },
-            splitLine: {
-              //坐标轴在 grid 区域中的分隔线。
-              show: false
-            }
-          }
-        ],
-        yAxis: [
-          {
-            type: "value",
-            splitNumber: 5,
-            axisLabel: {
-              textStyle: {
-                color: "#a8aab0",
-                fontStyle: "normal",
-                fontFamily: "微软雅黑",
-                fontSize: 12
-              }
-            },
-            axisLine: {
-              show: false
-            },
-            axisTick: {
-              show: false
-            },
-            splitLine: {
-              show: true,
-              lineStyle: {
-                color: "#EAEBF0"
-              }
-            }
-          }
-        ],
-        series: [
-          {
-            name: "村",
-            type: "bar",
-            data: [
-              10,
-              45,
-              30,
-              45,
-              15,
-              5,
-              62,
-              8,
-              60,
-              32,
-              60,
-              55,
-              45,
-              30,
-              15,
-              10
-            ],
-            barWidth: 6,
-            barGap: 0.5, //柱间距离
-            itemStyle: {
-              normal: {
-                show: true,
-                color: "#7A79FF",
-                barBorderRadius: 50,
-                borderWidth: 0
-              }
-            }
-          },
-          {
-            name: "区",
-            type: "bar",
-            data: [
-              10,
-              15,
-              30,
-              45,
-              55,
-              60,
-              62,
-              30,
-              80,
-              62,
-              60,
-              55,
-              45,
-              30,
-              15,
-              7
-            ],
-            barWidth: 6,
-            barGap: 0.5, //柱间距离
-            itemStyle: {
-              normal: {
-                show: true,
-                color: "#58CFFF",
-                barBorderRadius: 50,
-                borderWidth: 0
-              }
-            }
-          },
-          {
-            name: "街路巷",
-            type: "bar",
-            data: [10, 15, 30, 45, 5, 60, 62, 10, 80, 2, 40, 55, 45, 30, 45, 8],
-            barWidth: 6,
-            barGap: 0.5, //柱间距离
-            itemStyle: {
-              normal: {
-                show: true,
-                color: "#333FFF",
-                barBorderRadius: 50,
-                borderWidth: 0
-              }
-            }
-          }
-        ]
-      };
-      areaChart.setOption(option);
-      // tooltip定时移动
-      var count = 0;
-      if (this.timmerOneAnim) {
-        clearInterval(this.timmerOneAnim);
-      }
-      this.timmerOneAnim = setInterval(() => {
-        areaChart.dispatchAction({
-          type: "showTip",
-          seriesIndex: 0,
-          dataIndex: count % namedata.length
-        });
-        count++;
-      }, 5000);
-    }
-mounted(){
-    this.getbzdzAreaChart();
-}
+  private timmerOneAnim: any = null;
+  private commonColor1: any = "";
+  private commonColor2: any = "";
+  private areaOffset1: any = [];
+  private areaOffset2: any = [];
+  private imgEnter: any = require("../assets/sqEnter.svg");
+  private imgLeave: any = require("../assets/sqLeave.svg");
+  private namedata: any = ["00:00", "02:00", "04:00", "06:00", "08:00"];
+  private enterPeopleData: any = ["200", "400", "300", "500", "800"];
+  private leavePeopleData: any = ["400", "500", "200", "700", "200"];
+  getBrokenLineChart() {
+    this.commonColor1 = "#2F7CC8"; //折线颜色
+    this.commonColor2 = "#3ECF8E";
+    this.areaOffset1 = "#2F7CC8"; //填充色
+    this.areaOffset2 = "rgba(62,207,142,0.5)";
 
+    let option = {
+      tooltip: {
+        trigger: "axis",
+        backgroundColor: "rgba(56,59,85,0.8)", //提示框背景色
+        borderRadius: 2,
+        axisPointer: {
+          //坐标轴指示器
+          transitionDuration: 2000,
+          animation: true,
+          animationDelay(idx: any) {
+            return idx * 100;
+          },
+          animationDurationUpdate: 2000,
+          //竖线
+          lineStyle: {
+            color: this.commonColor1,
+            width: 2,
+            opacity: 0,
+          },
+        },
+        textStyle: {
+          color: "#fff",
+          fontSize: 18,
+        },
+        //   formatter: " {a0}: {c0} <br /> {a1}: {c1}"
+      },
+      legend: {
+        show: true,
+        right: "0",
+        icon: "roundRect",
+        selectedMode: true,
+        //   top: "-6%",
+        itemGap: 16,
+        itemWidth: 18,
+        itemHeight: 10,
+        textStyle: {
+          color: "rgba(237, 227, 227, 0.8)",
+        },
+      },
+      grid: {
+        show: false,
+        top: "18%",
+        bottom: "20%",
+      },
+      xAxis: [
+        {
+          show: true,
+          boundaryGap: false, //从零开始
+          axisLine: {
+            show: false,
+            onZero: true,
+          },
+          axisTick: {
+            show: false,
+            alignWithLabel: true,
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "rgba(200, 200, 200, 0.5)",
+            },
+          },
+          axisLabel: {
+            interval: 0,
+            textStyle: {
+              color: "#6C7293",
+              fontSize: 12,
+            },
+          },
+          data: [],
+        },
+      ],
+      yAxis: [
+        {
+          show: true,
+          splitNumber: 4,
+          type: "value",
+          axisLabel: {
+            show: true,
+            textStyle: {
+              color: "#6C7293",
+              fontSize: 10,
+            },
+          },
+          axisLine: {
+            show: false,
+          },
+          axisTick: {
+            show: false,
+          },
+          splitLine: {
+            show: true,
+            lineStyle: {
+              color: "rgba(200, 200, 200, 0.5)",
+              width: 1,
+            },
+          },
+        },
+      ],
+      series: [
+        {
+          name: "进入人数",
+          type: "line",
+          smooth: false,
+          // symbol: "circle", //拐点设置为实心
+          symbol: "image://" + this.imgEnter,
+          showSymbol: false,
+          symbolSize: [4, 8], //拐点大小
+          lineStyle: {
+            normal: {
+              color: this.commonColor1, //折线的颜色
+              width: 2, //折线粗细
+              opacity: 1,
+            },
+          },
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            normal: {
+              color: this.commonColor1, //拐点颜色
+              borderColor: "#fff", //拐点边框颜色
+              borderWidth: 2, //拐点边框大小
+            },
+          },
+          areaStyle: {
+            normal: {
+              color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: this.commonColor1,
+                },
+                {
+                  offset: 0.5,
+                  color: this.areaOffset1,
+                },
+                {
+                  offset: 1,
+                  color: this.areaOffset1,
+                },
+              ]),
+            },
+          },
+          data: [],
+          tooltip: {
+            formatter: " {a}: {c}<br />",
+          },
+        },
+        {
+          name: "离开人数",
+          type: "line",
+          smooth: false,
+          // symbol: "circle", //拐点设置为实心
+          symbol: "image://" + this.imgLeave,
+          showSymbol: false,
+          symbolSize: [4, 8], //拐点大小
+          lineStyle: {
+            normal: {
+              color: this.commonColor2, //折线的颜色
+              width: 2, //折线粗细
+              opacity: 1,
+            },
+          },
+          label: {
+            show: false,
+          },
+          itemStyle: {
+            normal: {
+              color: this.commonColor2, //拐点颜色
+              borderColor: "#fff", //拐点边框颜色
+              borderWidth: 2, //拐点边框大小
+            },
+          },
+          areaStyle: {
+            normal: {
+              color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                {
+                  offset: 0,
+                  color: this.commonColor2,
+                },
+                {
+                  offset: 1,
+                  color: this.areaOffset2,
+                },
+              ]),
+            },
+          },
+          data: [],
+          tooltip: {
+            formatter: " {a}: {c}",
+          },
+        },
+      ],
+    };
+    var commonChart = this.$echarts.init(this.$refs.doubleLineChart);
+
+    option.xAxis[0].data = this.namedata;
+    option.series[0].data = this.enterPeopleData;
+    option.series[1].data = this.leavePeopleData;
+
+    commonChart.setOption(option);
+
+    var count = 0;
+    if (this.timmerOneAnim) {
+      clearInterval(this.timmerOneAnim);
+    }
+    this.timmerOneAnim = setInterval(() => {
+      commonChart.dispatchAction({
+        type: "showTip",
+        seriesIndex: 0,
+        dataIndex: count % this.namedata.length,
+      });
+      count++;
+    }, 4000);
+  }
+
+  mounted() {
+    this.getBrokenLineChart();
+  }
 }
 </script>
 <style lang="scss" scoped>
+.lines {
+  height: 100%;
+}
 </style>

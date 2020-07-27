@@ -4,7 +4,6 @@
 <script lang="ts">
 import { Vue, Component } from "vue-property-decorator";
 import { extend } from "vue/types/umd";
-import echarts from "echarts";
 @Component
 export default class PieRingChart extends Vue {
   private peopleData: any = [
@@ -35,7 +34,7 @@ export default class PieRingChart extends Vue {
 
   // 饼图
   getBrokenPieChart() {
-    let commonPieChart = echarts.init(
+    let commonPieChart = this.$echarts.init(
       this.$refs.PieRingChart as HTMLCanvasElement
     );
     let pieChartOption: any = {

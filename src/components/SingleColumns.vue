@@ -5,11 +5,10 @@
 </template>
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import echarts from 'echarts';
 @Component
 export default class SingleColumns extends Vue {
-  timmerOne: any = null;
-//   public $echarts: any;
+  private timmerOne: any = null;
+  //   public $echarts: any;
   private namedata: any[] = [
     "宝山区",
     "静安区",
@@ -20,7 +19,7 @@ export default class SingleColumns extends Vue {
     "徐汇区",
     "长宁区",
     "青浦区",
-    "黄浦区"
+    "黄浦区",
   ];
   private option: object = {
     tooltip: {
@@ -30,22 +29,22 @@ export default class SingleColumns extends Vue {
       axisPointer: {
         type: "none",
         label: {
-          backgroundColor: "#6a7985"
-        }
+          backgroundColor: "#6a7985",
+        },
       },
       textStyle: {
         color: "#fff",
         fontStyle: "normal",
         fontFamily: "微软雅黑",
-        fontSize: 12
-      }
+        fontSize: 12,
+      },
     },
     grid: {
       top: "15%",
       bottom: "10%",
       right: "5%",
       left: "5%",
-      containLabel: true
+      containLabel: true,
     },
     xAxis: [
       {
@@ -58,26 +57,26 @@ export default class SingleColumns extends Vue {
             color: "#6C7293",
             fontStyle: "normal",
             fontFamily: "微软雅黑",
-            fontSize: 12
+            fontSize: 12,
           },
-          rotate: 0
+          rotate: 0,
         },
         axisTick: {
           //坐标轴刻度相关设置。
-          show: false
+          show: false,
         },
         axisLine: {
           //坐标轴轴线相关设置
           lineStyle: {
             color: "#fff",
-            opacity: 0.2
-          }
+            opacity: 0.2,
+          },
         },
         splitLine: {
           //坐标轴在 grid 区域中的分隔线。
-          show: false
-        }
-      }
+          show: false,
+        },
+      },
     ],
     yAxis: [
       {
@@ -88,22 +87,22 @@ export default class SingleColumns extends Vue {
             color: "#a8aab0",
             fontStyle: "normal",
             fontFamily: "微软雅黑",
-            fontSize: 12
-          }
+            fontSize: 12,
+          },
         },
         axisLine: {
-          show: false
+          show: false,
         },
         axisTick: {
-          show: false
+          show: false,
         },
         splitLine: {
           show: true,
           lineStyle: {
-            color: "#EAEBF0"
-          }
-        }
-      }
+            color: "#EAEBF0",
+          },
+        },
+      },
     ],
     series: [
       {
@@ -117,19 +116,19 @@ export default class SingleColumns extends Vue {
             show: true,
             color: "#7A79FF",
             barBorderRadius: 50,
-            borderWidth: 0
-          }
+            borderWidth: 0,
+          },
         },
         emphasis: {
           itemStyle: {
-            color: "#333FFF"
-          }
-        }
-      }
-    ]
+            color: "#333FFF",
+          },
+        },
+      },
+    ],
   };
   getsingleColumnChart() {
-    var singleChart: any = echarts.init(
+    var singleChart: any = this.$echarts.init(
       this.$refs.singleColumn as HTMLCanvasElement
     );
     // const singleChart: any = this.$echarts.init(
@@ -145,13 +144,12 @@ export default class SingleColumns extends Vue {
       singleChart.dispatchAction({
         type: "showTip",
         seriesIndex: 0,
-        dataIndex: count % this.namedata.length
+        dataIndex: count % this.namedata.length,
       });
       count++;
     }, 5000);
   }
   mounted() {
-   
     this.getsingleColumnChart();
   }
 }
