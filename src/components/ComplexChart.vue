@@ -175,7 +175,7 @@ export default class complexChart extends Vue {
     }, 3500);
   }
   mounted() {
-    console.log(this.cJData);
+    // console.log(this.cJData);
     this.getComplexColumn();
   }
 }

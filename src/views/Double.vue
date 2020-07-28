@@ -1,6 +1,9 @@
 <template>
   <div class="double">
     <div class="chart">
+      <ComplexPie></ComplexPie>
+    </div>
+    <div class="chart">
       <DoublePie></DoublePie>
     </div>
     <div class="chart">
@@ -21,12 +24,14 @@ import DoublePie from "@/components/DoublePie.vue";
 import DoubleLine from "@/components/DoubleLine.vue";
 import DoubleColumns from "@/components/DoubleColumns.vue";
 import ComplexColumn from "@/components/ComplexChart.vue";
+import ComplexPie from "@/components/ComplexPie.vue";
 @Component({
   components: {
     DoublePie,
     DoubleColumns,
     DoubleLine,
-    ComplexColumn
+    ComplexColumn,
+    ComplexPie,
   },
 })
 export default class Double extends Vue {}
