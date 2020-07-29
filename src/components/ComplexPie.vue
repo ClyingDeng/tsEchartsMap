@@ -264,7 +264,7 @@ export default class complexPieChart extends Vue {
           type: "gauge",
           radius: "70%",
           center: ["50%", "50%"],
-          z: 3,
+          z: 1,
           startAngle: 90,
           endAngle: -269.9,
           splitNumber: 3,
@@ -310,6 +310,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             return {
@@ -335,6 +336,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             let x0 = api.getWidth() / 2;
@@ -361,6 +363,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             return {
@@ -386,6 +389,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             let x0 = api.getWidth() / 2;
@@ -413,6 +417,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             return {
@@ -439,6 +444,7 @@ export default class complexPieChart extends Vue {
         {
           name: "ring5",
           type: "custom",
+          z: 1,
           coordinateSystem: "none",
           renderItem: function (params: any, api: any) {
             return {
@@ -466,14 +472,19 @@ export default class complexPieChart extends Vue {
       clearInterval(this.timmerOneAnim);
     }
     this.timmerOneAnim = setInterval(() => {
-      angle = angle + 3;
+      angle = angle + 5;
       PieCharts.setOption(articleOption);
-    }, 100);
+    }, 200);
 
-    // draw(){
-    //     angle = angle+3
-    //     myChart.setOption(option, true)
-    // }
+    PieCharts.on("mouseover", () => {
+      clearInterval(this.timmerOneAnim);
+    });
+    PieCharts.on("mouseout", () => {
+      this.timmerOneAnim = setInterval(() => {
+        angle = angle + 5;
+        PieCharts.setOption(articleOption);
+      }, 200);
+    });
   }
   //获取圆上面某点的坐标(x0,y0表示坐标，r半径，angle角度)
   getCirlPoint(x0: any, y0: any, r: any, angle: any) {
