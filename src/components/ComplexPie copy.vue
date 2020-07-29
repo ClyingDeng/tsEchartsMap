@@ -10,9 +10,10 @@ export default class complexPieChart extends Vue {
       document.getElementById("complexPie")
     );
     let articleOption: any = {
+      backgroundColor: "rgba(52,55,77,1)",
       tooltip: {
         trigger: "item",
-        formatter: "{b} ({c})",
+        formatter: "{a} <br/> {b}: {c}",
         textStyle: {
           color: "#fff",
           fontStyle: "normal",
@@ -22,139 +23,50 @@ export default class complexPieChart extends Vue {
       },
       series: [
         {
+          // silent: true,
           type: "sunburst",
+          name: "种类",
           radius: ["80%", "50%"],
           z: 2,
           data: [
             {
-              name: "甲类",
-              value: 5486,
+              name: "总甲",
+              value: 500,
               children: [
                 {
-                  value: 5406,
-                  name: "",
-                  itemStyle: {
-                    //parent的图形样式，不会被后代继承
-                    color: {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 1,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#81C2FF", // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#3090EA", // 100% 处的颜色
-                        },
-                      ],
-                      global: false, // 缺省为 false
-                    },
-                  },
+                  name: "甲类",
+                  value: 200,
                   children: [
                     {
-                      value: 586,
-                      itemStyle: {
-                        //parent的图形样式，不会被后代继承
-                        color: {
-                          type: "linear",
-                          x: 0,
-                          y: 0,
-                          x2: 1,
-                          y2: 1,
-                          colorStops: [
-                            {
-                              offset: 0,
-                              color: "#81C2FF", // 0% 处的颜色
-                            },
-                            {
-                              offset: 1,
-                              color: "#3090EA", // 100% 处的颜色
-                            },
-                          ],
-                          global: false, // 缺省为 false
-                        },
-                      },
+                      name: "甲1类",
+                      value: 100,
                     },
                   ],
                 },
               ],
             },
             {
-              name: "乙类",
-              value: 5486,
+              name: "总乙",
+              value: 500,
               children: [
                 {
-                  value: 5485,
-                  name: "",
-                  itemStyle: {
-                    //parent的图形样式，不会被后代继承
-                    color: {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 1,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#81C2FF", // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#3090EA", // 100% 处的颜色
-                        },
-                      ],
-                      global: false, // 缺省为 false
-                    },
-                  },
-                  children: [
-                    {
-                      value: 586,
-                      itemStyle: {},
-                    },
-                  ],
+                  value: 500,
+                  name: "乙类",
+                  children: [{ name: "乙1类", value: 400 }],
                 },
               ],
-              itemStyle: {
-                opacity: 0,
-              },
             },
             {
-              name: "丙类",
-              value: 5486,
+              name: "总丙",
+              value: 500,
               children: [
                 {
-                  value: 486,
-                  name: "",
-                  itemStyle: {
-                    //parent的图形样式，不会被后代继承
-                    color: {
-                      type: "linear",
-                      x: 0,
-                      y: 0,
-                      x2: 1,
-                      y2: 1,
-                      colorStops: [
-                        {
-                          offset: 0,
-                          color: "#81C2FF", // 0% 处的颜色
-                        },
-                        {
-                          offset: 1,
-                          color: "#3090EA", // 100% 处的颜色
-                        },
-                      ],
-                      global: false, // 缺省为 false
-                    },
-                  },
+                  value: 400,
+                  name: "丙类",
                   children: [
                     {
-                      value: 586,
-                      itemStyle: {},
+                      name: "丙1类",
+                      value: 200,
                     },
                   ],
                 },
@@ -163,101 +75,235 @@ export default class complexPieChart extends Vue {
           ],
           itemStyle: {
             //parent的图形样式，不会被后代继承
-            color: "transparent",
+            borderWidth: 0,
+            borderColor: "rgba(52,55,77,1)",
+          },
+          label: {
+            //parent的图形样式，不会被后代继承
+            show: false,
+            formatter: " {b} \n\n {c}",
+          },
+          levels: [
+            {},
+            {
+              r0: "0",
+              r: "40%",
+              label: {
+                show: true,
+                rotate: 0,
+                fontSize: 16,
+                color: "#f1f1f1",
+              },
+              itemStyle: {
+                color: "transparent",
+                borderWidth: 0,
+                borderColor: "rgba(52,55,77,1)",
+              },
+            },
+            {
+              r0: "52%",
+              r: "58%",
+              itemStyle: {
+                color: "#2D8EEA",
+              },
+            },
+            {
+              r0: "60%",
+              r: "70%",
+              itemStyle: {
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 1,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "#82C2FF", // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "#2D8EEA", // 100% 处的颜色
+                    },
+                  ],
+                  global: false, // 缺省为 false
+                },
+              },
+            },
+          ],
+        },
+        {
+          silent: true,
+          type: "sunburst",
+          // radius: ["80%", "50%"],
+          z: 1,
+          data: [
+            {
+              name: "甲类",
+              value: 500,
+              children: [
+                {
+                  value: 500,
+                  name: "",
+                  children: [
+                    {
+                      value: 500,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "乙类",
+              value: 500,
+              children: [
+                {
+                  value: 500,
+                  name: "",
+                  children: [
+                    {
+                      value: 500,
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "丙类",
+              value: 500,
+              children: [
+                {
+                  value: 500,
+                  name: "",
+                  children: [
+                    {
+                      value: 500,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+          itemStyle: {
+            //parent的图形样式，不会被后代继承
             borderWidth: 5,
-            borderColor: "transparent",
+            borderColor: "rgba(52,55,77,1)",
           },
           label: {
             //parent的图形样式，不会被后代继承
             show: false,
           },
+          levels: [
+            {},
+            {
+              itemStyle: {
+                color: "transparent",
+              },
+            },
+            { r0: "52%", r: "59%", itemStyle: { color: "#33486C" } },
+            {
+              r0: "59%",
+              r: "71%",
+              itemStyle: {
+                color: "#33486C",
+              },
+            },
+          ],
         },
-        // {
-        //   type: "sunburst",
-        //   radius: ["80%", "50%"],
-        //   z: 1,
-        //   data: [
-        //     {
-        //       name: "甲类",
-        //       value: 5486,
-        //       children: [
-        //         {
-        //           value: 5486,
-        //           name: "",
-        //           itemStyle: { color: "#33486C" },
-        //           children: [
-        //             {
-        //               value: 5486,
-        //               itemStyle: { color: "#33486C" },
-        //               children: [
-        //                 {
-        //                   value: 5486,
-        //                   itemStyle: { color: "#33486C" },
-        //                 },
-        //               ],
-        //             },
-        //           ],
-        //         },
-        //       ],
-        //     },
-        //     {
-        //       name: "乙类",
-        //       value: 5486,
-        //       children: [
-        //         {
-        //           value: 5486,
-        //           name: "",
-        //           itemStyle: { color: "#33486C" },
-        //           children: [
-        //             {
-        //               value: 5486,
-        //               itemStyle: { color: "#33486C" },
-        //               children: [
-        //                 {
-        //                   value: 5486,
-        //                   itemStyle: { color: "#33486C" },
-        //                 },
-        //               ],
-        //             },
-        //           ],
-        //         },
-        //       ],
-        //     },
-        //     {
-        //       name: "丙类",
-        //       value: 5486,
-        //       children: [
-        //         {
-        //           value: 5486,
-        //           name: "",
-        //           itemStyle: { color: "#33486C" },
-        //           children: [
-        //             {
-        //               value: 5486,
-        //               itemStyle: { color: "#33486C" },
-        //               children: [
-        //                 {
-        //                   value: 5486,
-        //                   itemStyle: { color: "#33486C" },
-        //                 },
-        //               ],
-        //             },
-        //           ],
-        //         },
-        //       ],
-        //     },
-        //   ],
-        //   itemStyle: {
-        //     //parent的图形样式，不会被后代继承
-        //     color: "transparent",
-        //     borderWidth: 20,
-        //     borderColor: "transparent",
-        //   },
-        //   label: {
-        //     //parent的图形样式，不会被后代继承
-        //     show: false,
-        //   },
-        // },
+        //内部短线
+        {
+          name: "",
+          silent: true,
+          type: "gauge",
+          radius: "58%",
+          center: ["50%", "50%"],
+          z: 3,
+          startAngle: 0,
+          endAngle: 359.9,
+          splitNumber: 24,
+          hoverAnimation: true,
+          axisTick: {
+            show: false,
+          },
+          splitLine: {
+            length: "26%",
+            lineStyle: {
+              width: 3,
+              color: "rgba(52,55,77,1)",
+            },
+          },
+          axisLabel: {
+            show: false,
+          },
+          pointer: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              opacity: 0,
+            },
+          },
+          detail: {
+            show: false,
+          },
+          data: [
+            {
+              value: 0,
+              name: "",
+            },
+          ],
+        },
+        //外部三分线
+        {
+          name: "",
+          silent: true,
+          type: "gauge",
+          radius: "70%",
+          center: ["50%", "50%"],
+          z: 3,
+          startAngle: 90,
+          endAngle: -269.9,
+          splitNumber: 3,
+          clockwise: true,
+          hoverAnimation: true,
+          axisTick: {
+            show: false,
+          },
+          splitLine: {
+            length: "80%",
+            lineStyle: {
+              width: 3,
+              color: "#2D8EEA",
+            },
+          },
+          axisLabel: {
+            show: false,
+          },
+          pointer: {
+            show: false,
+          },
+          axisLine: {
+            lineStyle: {
+              opacity: 0,
+            },
+          },
+          detail: {
+            show: false,
+          },
+          data: [
+            {
+              value: 0,
+              name: "",
+            },
+          ],
+          itemStyle: {
+            borderWidth: 5,
+            borderColor: "rgba(52,55,77,1)",
+          },
+        },
+        //外环旋转
+        
       ],
     };
     PieCharts.setOption(articleOption);
