@@ -219,7 +219,7 @@ export default class complexPieChart extends Vue {
           name: "",
           silent: true,
           type: "gauge",
-          radius: "58%",
+          radius: "60%",
           center: ["50%", "50%"],
           z: 3,
           startAngle: 0,
@@ -232,7 +232,7 @@ export default class complexPieChart extends Vue {
           splitLine: {
             length: "26%",
             lineStyle: {
-              width: 3,
+              width: 4,
               color: "rgba(52,55,77,1)",
             },
           },
@@ -264,7 +264,7 @@ export default class complexPieChart extends Vue {
           type: "gauge",
           radius: "70%",
           center: ["50%", "50%"],
-          z: 1,
+          z: 2,
           startAngle: 90,
           endAngle: -269.9,
           splitNumber: 3,
