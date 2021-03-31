@@ -4,13 +4,16 @@
       <div class="rightMenu">
         <ul>
           <li>
-            <router-link to="/" exact>单图</router-link>
+            <router-link to="/" exact>单图<i class="iconfont icon-mianxingbaoyu"></i></router-link>
           </li>
           <li>
-            <router-link to="/double" exact>双环</router-link>
+            <router-link to="/double" exact>多图</router-link>
           </li>
           <li>
             <router-link to="/map" exact>地图引用</router-link>
+          </li>
+          <li>
+            <router-link to="/drag" exact>文本拖拽</router-link>
           </li>
         </ul>
       </div>

@@ -1,10 +1,33 @@
 import Vue from 'vue'
-import VueRouter, { RouteConfig } from 'vue-router'
+import VueRouter, { Route } from 'vue-router';
 import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
-  const routes: Array<RouteConfig> = [
+declare global {
+  // 配置每个路由的单独属性title, keepalive, main, desc, icon, hidden, auth等
+  interface RouterMeta {
+    title?: string;
+    role?: string;
+    static?: boolean;
+  }
+  interface Router {
+    path: string;
+    name?: string;
+    icon?: string;
+    permission?: string;
+    meta?: RouterMeta;
+    component?: any;
+    children?: Router[];
+    redirect?: string;
+  }
+  interface System {
+    import(request: string): Promise<any>;
+  }
+  var System: System;
+}
+
+  const routes: Router[] = [
   {
     path: '/',
     name: 'Home',
