@@ -15,6 +15,22 @@
     <div class="chart">
       <ComplexColumn></ComplexColumn>
     </div>
+    <div class="chart">
+      <SunBurst></SunBurst>
+    </div>
+    <div class="chart">
+      <Columnar></Columnar>
+    </div>
+    <div class="chart">
+      <BidirectionalColumnar></BidirectionalColumnar>
+    </div>
+    <div class="chart">
+      <HouseColumnar></HouseColumnar>
+    </div>
+    <div class="chart">
+      <h1 style="color:#fff;">待更新...</h1>
+      <!-- <Sector></Sector> -->
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -25,6 +41,12 @@ import DoubleLine from "@/components/DoubleLine.vue";
 import DoubleColumns from "@/components/DoubleColumns.vue";
 import ComplexColumn from "@/components/ComplexChart.vue";
 import ComplexPie from "@/components/ComplexPie.vue";
+
+import SunBurst from "@/components/sunburst/Sunburst.vue";
+import Columnar from "@/components/columnar/Columnar.vue";
+import BidirectionalColumnar from "@/components/BidirectionalColumnar/BidirectionalColumnar.vue";
+import HouseColumnar from "@/components/houseColumnar/HouseColumnar.vue";
+import Sector from "@/components/sector/Sector.vue";
 @Component({
   components: {
     DoublePie,
@@ -32,6 +54,11 @@ import ComplexPie from "@/components/ComplexPie.vue";
     DoubleLine,
     ComplexColumn,
     ComplexPie,
+    SunBurst,
+    Columnar,
+    BidirectionalColumnar,
+    HouseColumnar,
+    Sector,
   },
 })
 export default class Double extends Vue {}
@@ -42,8 +69,8 @@ export default class Double extends Vue {}
   justify-content: space-evenly;
   flex-wrap: wrap;
   .chart {
-    width: 500px;
-    height: 500px;
+    width: 550px;
+    height: 550px;
     background-color: #34374d;
     margin-top: 20px;
   }
