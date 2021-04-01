@@ -8,7 +8,7 @@
         <li @click="stop">停止绘制</li>
         <!-- <li @click="editor">编辑</li> -->
         <li @click="clear">全部清除</li>
-        <li @click="lonLat">输出当前图形坐标</li>
+        <li @click="lonLat">输出坐标</li>
       </ul>
     </div>
 
